@@ -3,8 +3,8 @@ package app
 import (
 	"encoding/json"
 	"errors"
-	"github.com/Geniuskaa/Task10.1_BGO-3/cmd/card"
-	"github.com/Geniuskaa/Task10.1_BGO-3/cmd/dto"
+	"github.com/Geniuskaa/Task10.1_BGO-3/cmd/bank/app/dto"
+	"github.com/Geniuskaa/Task10.1_BGO-3/pkg/card"
 	"log"
 	"net/http"
 	"strconv"
