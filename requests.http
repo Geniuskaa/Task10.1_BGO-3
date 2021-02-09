@@ -1,0 +1,23 @@
+###
+GET http://localhost:9999/getCards?id=2 HTTP/1.1
+
+###
+POST http://localhost:9999/addCard?id=1&virtualCard=true HTTP/1.1
+Accept: text/plain
+Content-Type: application/x-www-form-urlencoded
+
+###
+POST http://localhost:9999/getCards?id=1 HTTP/1.1
+
+//НЕудачные запросы
+
+###
+POST http://localhost:9999/addCard?id=7&virtualCard=true HTTP/1.1
+Accept: text/plain
+Content-Type: application/x-www-form-urlencoded
+
+###
+POST http://localhost:9999/getCards?id=8 HTTP/1.1
+
+
+
