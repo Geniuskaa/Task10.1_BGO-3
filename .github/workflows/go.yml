@@ -45,5 +45,5 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
-          repository: netology-code/bgo-docker/bank
+          repository: Geniuskaa/Task10.1_BGO-3/bank
           tag_with_ref: true
