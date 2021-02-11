@@ -47,3 +47,6 @@ jobs:
           registry: docker.pkg.github.com
           repository: Geniuskaa/Task10.1_BGO-3/bank
           tag_with_ref: true
+
+        - name: Build from Docker multistage
+          run: docker build -f Dockerfile.multistage -t multibank .
