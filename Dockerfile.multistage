@@ -1,6 +1,5 @@
 FROM golang:1.14-alpine AS build
 COPY . /app
-ENV GOOS=linux
 ENV CGO_ENABLED=0
 WORKDIR /app
 RUN go build -o bank ./cmd/bank
