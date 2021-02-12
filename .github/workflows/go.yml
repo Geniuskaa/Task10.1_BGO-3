@@ -48,5 +48,5 @@ jobs:
           repository: Geniuskaa/task10.1/bank
           tag_with_ref: true
 
-        - name: Build from Docker multistage
-          run: docker build -f Dockerfile.multistage -t multibank .
+      - name: Build from Docker multistage
+        run: docker build -f Dockerfile.multistage -t multibank .
