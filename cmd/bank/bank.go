@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/Geniuskaa/Task10.1_BGO-3/cmd/bank/app"
-	"github.com/Geniuskaa/Task10.1_BGO-3/pkg/card"
+	"github.com/Geniuskaa/task10.1/cmd/bank/app"
+	"github.com/Geniuskaa/task10.1/pkg/card"
 	"log"
 	"net"
 	"net/http"

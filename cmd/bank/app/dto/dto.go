@@ -1,7 +1,7 @@
 package dto
 
 import (
-	"github.com/Geniuskaa/Task10.1_BGO-3/pkg/card"
+	"github.com/Geniuskaa/task10.1/pkg/card"
 )
 
 type CardDTO struct {

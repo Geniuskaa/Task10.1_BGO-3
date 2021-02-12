@@ -30,8 +30,8 @@ jobs:
 
       - name: Test
         run: go test -v ./...
-        
-        - name: Build binary for docker image
+
+      - name: Build binary for docker image
         run: go build -v -o bank ./cmd/bank
         env:
           CGO_ENABLED: 0
@@ -45,7 +45,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
-          repository: Geniuskaa/Task10.1_BGO-3/bank
+          repository: Geniuskaa/task10.1/bank
           tag_with_ref: true
 
         - name: Build from Docker multistage

@@ -1,4 +1,4 @@
-module github.com/Geniuskaa/Task10.1_BGO-3
+module github.com/Geniuskaa/task10.1
 
 go 1.15
 
