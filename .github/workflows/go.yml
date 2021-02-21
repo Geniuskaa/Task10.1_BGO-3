@@ -45,7 +45,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
-          repository: Geniuskaa/task10.1/bank
+          repository: geniuskaa/task10.1/bank
           tag_with_ref: true
 
       - name: Build from Docker multistage
