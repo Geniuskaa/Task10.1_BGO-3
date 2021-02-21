@@ -4,7 +4,9 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"math/rand"
 	"sync"
+	"time"
 )
 
 
@@ -14,7 +16,8 @@ type Card struct {
 	Currency string `json:"currency"`
 	Balance  int64 `json:"balance"`
 	Virtual  bool `json:"virtual"`
-	Id       int64 `json:"id"`
+	CardId   int64 `json:"card_id"`
+	HolderId int64 `json:"holder_id"`
 }
 
 type Service struct {
@@ -33,41 +36,48 @@ func NewService() *Service {
 			Currency: "RUB",
 			Balance:  325_325_33,
 			Virtual:  false,
-			Id:       1,
+			CardId: 62826,
+			HolderId: 1,
 		}, &Card{
 			Issuer:   "VISA",
 			Number:   "0002",
 			Currency: "RUB",
 			Balance:  29_391_31,
 			Virtual:  false,
-			Id:       2,
+			CardId: 85920,
+			HolderId: 2,
 		}, &Card{
 			Issuer:   "MASTER",
 			Number:   "0003",
 			Currency: "RUB",
 			Balance:  35_23,
 			Virtual:  true,
-			Id:       2,
+			CardId: 14262,
+			HolderId: 2,
 		}},
 	}
 }
 
-func (s *Service) CardAdding(yourId int64, virtualCard bool) error {
+func (s *Service) CardAdding(yourId int64, issuer string, virtualCard bool) error {
 	var n string
 	if yourId > 10 && yourId < 100 {
 		n = fmt.Sprintf("00%d", yourId + 1)
 	}
 	n = fmt.Sprintf("000%d", yourId + 1)
 
+	rand.Seed(time.Now().UnixNano())
+	randId := rand.Int63() % 100000
+
 	for _, element := range s.cards{
-		if element.Id == yourId {
+		if element.HolderId == yourId {
 			s.cards = append(s.cards, &Card{
-				Issuer:   "VISA",
+				Issuer:   issuer,
 				Number:   n,
 				Currency: "RUB",
 				Balance:  0,
 				Virtual:  virtualCard,
-				Id:       yourId,
+				CardId: randId,
+				HolderId: yourId,
 			})
 			return nil
 		}

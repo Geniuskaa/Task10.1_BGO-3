@@ -41,7 +41,7 @@ func (s *Server) getCards(w http.ResponseWriter, r *http.Request) {
 	dtos := make([]*dto.CardDTO, len(cards))
 	counter := 0
 	for i, c := range cards {
-		if c.Id == int64(id) {
+		if c.HolderId == int64(id) {
 			counter++
 			dtos[i] = &dto.CardDTO{
 				Card: card.Card{
@@ -50,7 +50,7 @@ func (s *Server) getCards(w http.ResponseWriter, r *http.Request) {
 					Currency: c.Currency,
 					Balance:  c.Balance,
 					Virtual:  c.Virtual,
-					Id:       c.Id,
+					CardId:   c.CardId,
 				},
 			}
 		}
@@ -84,22 +84,29 @@ func (s *Server) getCards(w http.ResponseWriter, r *http.Request) {
 
 func (s *Server) addCard(w http.ResponseWriter, r *http.Request) {
 	mapWithValues := r.URL.Query()
-	value1 := mapWithValues["id"]
-	id, err := strconv.Atoi(value1[0])
+	unParsedId := mapWithValues["id"]
+	id, err := strconv.Atoi(unParsedId[0])
 	if err != nil {
 		w.WriteHeader(404)
 		log.Println(err)
 		return
 	}
-	value2 := mapWithValues["virtualCard"]
-	virtualCard, err := strconv.ParseBool(value2[0])
+	unParsedIssuer := mapWithValues["issuer"]
+	issuer := unParsedIssuer[0]
+	if issuer == "" {
+		w.WriteHeader(404)
+		log.Println(err)
+		return
+	}
+	unParsedVirtualCard := mapWithValues["virtualCard"]
+	virtualCard, err := strconv.ParseBool(unParsedVirtualCard[0])
 	if err != nil {
 		w.WriteHeader(404)
 		log.Println(err)
 		return
 	}
 
-	err = s.cardSvc.CardAdding(int64(id), virtualCard)
+	err = s.cardSvc.CardAdding(int64(id), issuer, virtualCard)
 	if err != nil {
 		w.WriteHeader(404)
 		log.Println(err)
